@@ -79,7 +79,7 @@ public class Academia_IT {
                                 System.out.println("Введи порядковый номер");
                                 n = sc.nextInt();
                                 System.out.println("Введи значение ");
-                                num.add(n, Integer.parseInt(bf.readLine()));
+                                num.add(n-1, Integer.parseInt(bf.readLine()));
                                 System.out.println(num);
                                 break;
                             default:
