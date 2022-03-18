@@ -55,19 +55,17 @@ public class Academia_IT {
                     }
                     break;
                 case 5:
-                    boolean stop = false;
-
                     System.out.println("Заменить значение-1 / Заменить порядковый номер-2");
                     switch (Integer.parseInt(bf.readLine())) {
                         case 1:
-                            int counter = -1;
                             System.out.println("Введи число");
                             n = sc.nextInt();
                             System.out.println("На какое число заменить?");
                             change = sc.nextInt();
                             String index = String.valueOf(num.indexOf(n));
-                            num.set(Integer.parseInt(index), change);
-                            if (index == null) {
+                            try {
+                                num.set(Integer.parseInt(String.valueOf(num.indexOf(n))), change);
+                            }catch(IndexOutOfBoundsException ex) {
                                 System.out.println("Такого значения нет");
                             }
                             System.out.println(num);
