@@ -21,6 +21,7 @@ public class Academia_IT {
             System.out.println("Добавить эл-т в список: 1 \nУдалить порядковый номер из списка: 2 " +
                     "\nПоказать содержимое списка: 3 \nПроверить значение в списке: 4 \nЗаменить значение в списке: 5");
             int n;
+            int change;
             Iterator<Integer> it = num.iterator();
             switch (Integer.parseInt(bf.readLine())) {
                 case 1:
@@ -55,40 +56,36 @@ public class Academia_IT {
                     break;
                 case 5:
                     boolean stop = false;
-     //               do {
-                        System.out.println("Заменить значение-1 / Заменить порядковый номер-2");
-                        switch (Integer.parseInt(bf.readLine())) {
-                            case 1:
-                                int counter = -1;
-                                System.out.println("Введи число");
-                                n = sc.nextInt();
-                                System.out.println("На какое число заменить?");
-                                int change = sc.nextInt();
-                                while (it.hasNext()) {
-                                    counter++;
-                                    if (n == it.next()) {
-                                        num.remove(counter);
-                                        num.add(counter, change);
-                                    } else if (!it.hasNext()) {
-                                        System.out.println("Такого значения нет");
-                                    }
-                                }
-                                System.out.println(num);
-                                break;
-                            case 2:
-                                System.out.println("Введи порядковый номер");
-                                n = sc.nextInt();
-                                System.out.println("Введи значение ");
-                                int changeNum=Integer.parseInt(bf.readLine());
-                                num.add(n-1,changeNum);
-                                System.out.println(num);
-                                break;
-                            default:
-                        }
-  //                  } while (stop);
+
+                    System.out.println("Заменить значение-1 / Заменить порядковый номер-2");
+                    switch (Integer.parseInt(bf.readLine())) {
+                        case 1:
+                            int counter = -1;
+                            System.out.println("Введи число");
+                            n = sc.nextInt();
+                            System.out.println("На какое число заменить?");
+                            change = sc.nextInt();
+                            String index = String.valueOf(num.indexOf(n));
+                            num.set(Integer.parseInt(index), change);
+                            if (index == null) {
+                                System.out.println("Такого значения нет");
+                            }
+                            System.out.println(num);
+                            break;
+                        case 2:
+                            System.out.println("Введи порядковый номер");
+                            n = sc.nextInt();
+                            System.out.println("Введи значение ");
+                            change = Integer.parseInt(bf.readLine());
+                            num.set(n - 1, change);
+                            System.out.println(num);
+                            break;
+                        default:
+                    }
                 default:
                     System.out.println("Выход из программы-0 / для продолжения нажми любую клавишу");
             }
-        } while (!sc.next().equals("0"));
+        }
+        while (!sc.next().equals("0"));
     }
 }
