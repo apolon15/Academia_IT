@@ -55,7 +55,7 @@ public class Academia_IT {
                     break;
                 case 5:
                     boolean stop = false;
-                    do {
+     //               do {
                         System.out.println("Заменить значение-1 / Заменить порядковый номер-2");
                         switch (Integer.parseInt(bf.readLine())) {
                             case 1:
@@ -79,12 +79,13 @@ public class Academia_IT {
                                 System.out.println("Введи порядковый номер");
                                 n = sc.nextInt();
                                 System.out.println("Введи значение ");
-                                num.add(n-1, Integer.parseInt(bf.readLine()));
+                                int changeNum=Integer.parseInt(bf.readLine());
+                                num.add(n-1,changeNum);
                                 System.out.println(num);
                                 break;
                             default:
                         }
-                    } while (stop);
+  //                  } while (stop);
                 default:
                     System.out.println("Выход из программы-0 / для продолжения нажми любую клавишу");
             }
