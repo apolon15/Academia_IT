@@ -7,11 +7,8 @@ import java.util.*;
 
 public class Academia_IT {
     public static void main(String[] args) throws IOException {
-        //  collection();
-        Users u1 = new Users("apolon15", "12345");
-        collectionUsers();
-
-
+          collection();
+        //collectionUsers();
     }
 
     public static void collection() throws IOException {
@@ -41,8 +38,12 @@ public class Academia_IT {
                 case 2:
                     System.out.println("Введи число");
                     n = sc.nextInt();
-                    num.remove(n - 1);
-                    System.out.println(num);
+                    try {
+                        num.remove(n - 1);
+                        System.out.println(num);
+                    } catch (IndexOutOfBoundsException ex) {
+                        System.out.println("Внимательно читай условия.Нет такого порядкового  номера. Выход из программы-0 / для продолжения нажми любую клавишу");
+                    }
                     break;
                 case 3:
                     System.out.println(num);
@@ -97,79 +98,105 @@ public class Academia_IT {
 
     public static void collectionUsers() throws IOException {
         List<Users> uS = new ArrayList<>();
-        System.out.println("Добавить пользователя: 1 \nУдалить пользователя: 2 " +
-                "\nПроверить пользователяв списке: 3\nИзменить логин пользователя: 4 \nИзменить пароль пользователя: 5");
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
         String login;
         String pass;
-  //      Users user = new Users();
-  //      Users user1 = new Users("apolon1", "тгдд");
-  //      uS.add(user);
-   //     uS.add(user1);
+        boolean stop = false;
         Iterator<Users> it = uS.iterator();
-        switch (Integer.parseInt(bf.readLine())) {
-            case 1:
-                System.out.println("Введи логин:");
-                login = bf.readLine();
-                System.out.println("Введи pass:");
-                pass = bf.readLine();
-         //       User user = new Users(login, pass);
-                uS.add(new Users(login,pass));
-                System.out.println(uS);
-                break;
-            case 2:
-                System.out.println("Введи логин:");
-                login = bf.readLine();
-                while (it.hasNext()) {
-                    for (int i = 0; i <= uS.size() - 1; i++)
-                        if (uS.get(i).getLogin().equals(login)) {
-                            uS.remove(i);
-                            System.out.println("Пользователь под login " + login + " удален");
-                            System.out.println(uS);
-                        } else if (!it.hasNext()) {
-                            System.out.println(" Нет такого юзера ");
-                            System.out.println(uS);
+        do {
+            System.out.println("Добавить пользователя: 1 \nУдалить пользователя: 2 " +
+                    "\nПроверить пользователяв списке: 3\nИзменить логин пользователя: 4 \nИзменить пароль пользователя: 5");
+            BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                switch (Integer.parseInt(bf.readLine())) {
+                    case 1:
+                        System.out.println("Введи логин:");
+                        login = bf.readLine();
+                        System.out.println("Введи pass:");
+                        pass = bf.readLine();
+                        uS.add(new Users(login, pass));
+                        System.out.println(uS);
+                        break;
+                    case 2:
+                        if (uS.isEmpty()) {
+                            System.out.println("Cписок пуст");
+                        } else {
+                            System.out.println("Введи логин:");
+                            login = bf.readLine();
+                            while (it.hasNext()) {
+                                for (int i = 0; i <= uS.size() - 1; i++) {
+                                    if (uS.get(i).getLogin().equals(login)) {
+                                        uS.remove(i);
+                                        System.out.println("Пользователь под login " + login + " удален");
+                                        System.out.println(uS);
+                                    } else if (!it.hasNext()) {
+                                        System.out.println(" Нет такого юзера ");
+                                        System.out.println(uS);
+                                    }
+                                }
+                            }
                         }
-                }
-                break;
-            case 3:
-                System.out.println("Введи логин:");
-                login = bf.readLine();
-                while (it.hasNext()) {
-                    for (int i = 0; i <= uS.size() - 1; i++)
-                        if (uS.get(i).getLogin().equals(login)) {
-                            System.out.println("Такой существует");
-                        } else if (!it.hasNext()) {
-                            System.out.println(" Нет такого юзера ");
+                        break;
+                    case 3:
+                        if (uS.isEmpty()) {
+                            System.out.println("Cписок пуст");
+                        } else {
+                            System.out.println("Введи логин:");
+                            login = bf.readLine();
+                            while (it.hasNext()) {
+                                for (int i = 0; i <= uS.size() - 1; i++) {
+                                    if (uS.get(i).getLogin().equals(login)) {
+                                        System.out.println("Такой существует");
+                                        System.out.println(uS);
+                                    } else if (!it.hasNext()) {
+                                        System.out.println(" Нет такого юзера ");
+                                        System.out.println(uS);
+                                    }
+                                }
+                            }
                         }
+                        break;
+                    case 4:
+                        if (uS.isEmpty()) {
+                            System.out.println("Cписок пуст");
+                        } else {
+                            System.out.println("Введи логин требующий замены:");
+                            login = bf.readLine();
+                            System.out.println("Введи новый логин :");
+                            String newLogin = bf.readLine();
+                            for (int i = 0; i <= uS.size() - 1; i++) {
+                                if (uS.get(i).getLogin().equals(login)) {
+                                    uS.get(i).setLogin(newLogin);
+                                    System.out.println(uS);
+                                } else if (i == uS.size() - 1) {
+                                    System.out.println("Нет юзера с таким логином\n" + uS);
+                                }
+                            }
+                        }
+                        break;
+                    case 5:
+                        if (uS.isEmpty()) {
+                            System.out.println("Cписок пуст");
+                        } else {
+                            System.out.println("Введи пароль требующий замены:");
+                            pass = bf.readLine();
+                            System.out.println("Введи новый pass :");
+                            String newPass = bf.readLine();
+                            for (int i = 0; i <= uS.size() - 1; i++) {
+                                if (uS.get(i).getPass().equals(pass)) {
+                                    uS.get(i).setPass(newPass);
+                                } else if (i == uS.size() - 1) {
+                                    System.out.println("Нет юзера с таким pass");
+                                }
+                            }
+                        }
+                        break;
+                    default:
+                        System.out.println("Ожидаю ввода:");
                 }
-                break;
-            case 4:
-                System.out.println("Введи логин требующий замены:");
-                login = bf.readLine();
-                System.out.println("Введи новый логин :");
-                String newLogin = bf.readLine();
-                for (int i = 0; i <= uS.size() - 1; i++)
-                    if (uS.get(i).getLogin().equals(login)) {
-                        uS.get(i).setLogin(newLogin);
-                    } else if (i == uS.size() - 1) {
-                        System.out.println("Нет юзера с таким логином");
-                    }
-                break;
-            case 5:
-                System.out.println("Введи пароль требующий замены:");
-                pass = bf.readLine();
-                System.out.println("Введи новый pass :");
-                String newPass = bf.readLine();
-                for (int i = 0; i <= uS.size() - 1; i++)
-                    if (uS.get(i).getPass().equals(pass)) {
-                        uS.get(i).setPass(newPass);
-                    } else if (i == uS.size() - 1) {
-                        System.out.println("Нет юзера с таким pass");
-                    }
-                break;
-            default:
-                System.out.println("Ожидаю ввода:");
-        }
+
+            } catch (NumberFormatException ex) {
+                System.out.println("Введи число: ");
+            }
+        } while (!stop);
     }
 }
