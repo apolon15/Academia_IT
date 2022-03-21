@@ -198,5 +198,111 @@ public class Academia_IT {
                 System.out.println("Введи число: ");
             }
         } while (!stop);
+        List<String> names = new ArrayList<>(100);
+//        names.add("Паша");
+//        names.add("Игорь");
+//        names.add("Алена");
+////        String username = "Вадик";
+////        System.out.println(names.contains(username));
+//        System.out.println(names.get(2));
+//        ((ArrayList<String>) names).trimToSize();
+//        for (String name : names) {
+//            System.out.println(name);
+//        }
+//        for (int i = 0; i < names.size(); i++) {
+//            System.out.println(names.get(i));
+//        }
+//        boolean result = names.remove("Паша");
+//        if (result) {
+//            System.out.println("Удален ");
+//        } else {
+//            System.out.println(" no delete");
+//        }
+//        List<Integer> number = Arrays.asList(1, 2, 3, 4, 5, 6);
+// //       number.set(2, 20);
+//        Iterator<Integer> it = number.iterator();
+//        while (it.hasNext()) {
+//            int n = it.next();
+//            if (n % 2 == 0) {
+//                it.remove();
+//
+//            }
+//            System.out.println(number);
+
+//        for (int num:number ) {
+//            if(num%2==0){
+//                number.remove(num);
+//            }
+//            System.out.println(number);
+//        }
+//        number.forEach(x-> System.out.println(x*2));
+        //       }
+//        System.out.println(" Введи  размерность коллекции: ");
+//        Scanner sc=new Scanner(System.in);
+//        int sizeList=sc.nextInt();
+//        List<Integer> num = new ArrayList<>(sizeList);
+//        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+////        System.out.println("Введи "+ sizeList+ " чисел");
+////        for (int i=0;i<sizeList;i++) {
+//             num.add(Integer.parseInt(bf.readLine()));
+//        }
+        //    System.out.println(num);
+
+//        List<String>names=new LinkedList<>();
+//        LinkedList<String>n2= new LinkedList<>();
+//
+//        names.add("Иван");
+//        names.add("Катя");
+//        names.add("Петя");
+//        names.add(1,"Оля");
+//        System.out.println(names);
+//        String [] name={"Миша", "Таня","Света", null};
+//        names.addAll(Arrays.asList(name));
+//        n2.addFirst("Таня");
+//        n2.addLast("Витя");
+//        n2.add("Игорь");
+//        System.out.println(n2);
+//
+
+//        LinkedList<Integer> phone = new LinkedList<>();
+//        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+//        Integer[] num = new Integer[3];
+//        for (int i = 0; i <= num.length - 1; i++) {
+//            System.out.println("Введи номер телефона: ");
+//            try {
+//                num[i] = Integer.parseInt(bf.readLine());
+//            } catch (NumberFormatException ex) {
+//                System.out.println("Не корректный вод");
+//                i--;
+//            }
+//        }
+//        phone.addAll(Arrays.asList(num));
+//        System.out.println(phone);
+
+
+        ArrayList<Integer> phone1 = new ArrayList<>(5);
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        Integer[] num1 = new Integer[3];
+        for (int i = 0; i <= num1.length - 1; i++) {
+            System.out.println("Введи номер телефона: ");
+            try {
+                num1[i] = Integer.parseInt(bf.readLine());
+            } catch (NumberFormatException ex) {
+                System.out.println("Не корректный вод");
+                i--;
+            }
+        }
+        phone1.addAll(Arrays.asList(num1));
+        boolean stop = true;
+        do {
+            System.out.println("Введи номер индекса для поиска: ");
+            try {
+                System.out.println(phone1.get(Integer.parseInt(bf.readLine())));
+                stop = false;
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println(" Нет такого индекса");
+            }
+        } while (!stop);
     }
-}
+    }
+
