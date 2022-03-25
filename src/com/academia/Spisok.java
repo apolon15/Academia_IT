@@ -1,7 +1,5 @@
 package com.academia;
 
-import sun.awt.image.ImageWatched;
-
 import java.util.*;
 
 public class Spisok {
@@ -12,11 +10,16 @@ public class Spisok {
         //System.out.println(task4());
         // System.out.println(task5());
         //  System.out.println(task6());
-        // System.out.println(task7());
-       // task8();
-       // task9();
+        System.out.println(task7());
+        // task8();
+        // task9();
     }
 
+    /*
+    Задача 1
+    Дан список некоторых целых чисел, найдите значение 20 в нем и, если оно присутствует, замените его на 200. Обновите список только при первом вхождении числа 20.
+
+     */
     public static LinkedList<Integer> task1() {
         LinkedList<Integer> l = new LinkedList<Integer>();
         int i = 0;
@@ -31,6 +34,11 @@ public class Spisok {
         return l;
     }
 
+    /*
+    Задача 2
+    Необходимо удалить пустые строки из списка строк.
+
+     */
     public static LinkedList<String> task2() {
         LinkedList<String> l = new LinkedList<String>();
         int i = 0;
@@ -50,6 +58,11 @@ public class Spisok {
         return l;
     }
 
+    /*
+    Задача 3
+    Дан список чисел. Превратите его в список квадратов этих чисел.
+
+     */
     public static ArrayList<Integer> task3() {
         ArrayList<Integer> arrList = new ArrayList<>(10);
         int i = 0;
@@ -64,6 +77,11 @@ public class Spisok {
         return arrList;
     }
 
+    /*
+    Задача 4
+    Дан список чисел, необходимо удалить все вхождения числа 20 из него.
+
+     */
     public static LinkedList<Integer> task4() {
         LinkedList<Integer> l = new LinkedList<Integer>();
         int i = 0;
@@ -82,6 +100,11 @@ public class Spisok {
         return l;
     }
 
+    /*
+    Задача 5
+    Необходимо вывести список в обратном порядке.
+
+     */
     public static LinkedList<Integer> task5() {
         LinkedList<Integer> l = new LinkedList<Integer>();
         int i = 0;
@@ -94,6 +117,11 @@ public class Spisok {
         return l;
     }
 
+    /*
+    Задача 6
+    Заполнить список ста нулями, кроме первого и последнего элементов, которые должны быть равны единице.
+
+     */
     public static LinkedList<Integer> task6() {
         LinkedList<Integer> l = new LinkedList<Integer>();
         int i = 0;
@@ -108,17 +136,32 @@ public class Spisok {
         return l;
     }
 
-    public static LinkedList<Integer> task7() {
-        LinkedList<Integer> l = new LinkedList<Integer>();
-        int i = 0;
-        l.add(0);
-        while (i < 45) {
-            l.add(l.get(i) + 2);
-            i++;
+    /*
+    Задача 7.
+    Сформировать возрастающий список из чётных чисел (количество элементов 45).
+
+     */
+    public static ArrayList<Integer> task7() {
+        int[] mass = new int[45];
+        ArrayList<Integer> l = new ArrayList<>();
+        for (int i = 0; i < 45; i++) {
+            int num = (int) (Math.random() * 100);
+            if (num % 2 == 0 && num != 0) {
+                l.add(num);
+            } else
+                i--;
         }
+        Collections.sort(l);
         return l;
     }
 
+
+    /*
+    Задача 8.
+    Пользователь вводит число. Определить, содержит ли список данное число x. Если содержит, то вывести на экран число 7145, если не содержит, то вывести на экран число 5741;
+    Найдите сумму и произведение элементов списка. Результаты вывести на экран.
+
+     */
     public static void task8() {
         Scanner sc = new Scanner(System.in);
         LinkedList<Integer> l = new LinkedList<Integer>();
@@ -141,7 +184,13 @@ public class Spisok {
         System.out.println("Сумма ячеек = " + sum + "; произведение ячеек = " + mult);
     }
 
+    /*
+    Задача 9.
+    Найти наибольший элемент списка и вывести его на экран;
+    Определите, есть ли в списке повторяющиеся элементы, если да, то вывести на экран это значение;
+    Поменять местами самый большой и самый маленький элементы списка
 
+     */
     public static void task9() {
         List<Integer> l = new ArrayList<>(10);
         int max = 0;
