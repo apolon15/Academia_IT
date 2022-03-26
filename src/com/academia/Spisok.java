@@ -1,7 +1,5 @@
 package com.academia;
-
 import java.util.*;
-
 public class Spisok {
     public static void main(String[] args) {
         // System.out.println(task1());
@@ -14,7 +12,6 @@ public class Spisok {
         // task8();
         // task9();
     }
-
     /*
     Задача 1
     Дан список некоторых целых чисел, найдите значение 20 в нем и, если оно присутствует, замените его на 200. Обновите список только при первом вхождении числа 20.
@@ -130,7 +127,6 @@ public class Spisok {
             i++;
         }
         System.out.println(l);
-
         l.set(0, 1);
         l.set(99, 1);
         return l;
@@ -227,7 +223,6 @@ public class Spisok {
             max = it.next();
             it.remove();
             if (l.contains(max)) {
-// System.out.print(max+"; ");
                 System.out.printf("%d; ", max);
                 min++;
             }

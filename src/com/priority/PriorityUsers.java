@@ -1,41 +1,60 @@
 package com.priority;
 
-import com.academia.Users;
+import com.academia.Academia_IT;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.PriorityQueue;
+import java.util.Scanner;
 
-import static java.lang.Integer.compare;
+public class PriorityUsers implements Comparator<Person>, PriorityUsers1 {
+    public static void main(String[] args) throws IOException {
+        task();
+    }
 
-//, compare(Integer.parseInt(new Users(bf.readLine(), (bf.readLine())).getStatus()))),Integer.parseInt(new Users(bf.readLine(), (bf.readLine())).getStatus())))
+    public static void task() {
+        Scanner sc = new Scanner(System.in);
+        PriorityQueue<Person> pQ = new PriorityQueue<Person>(5);
+          for (int i = 0; i <= pQ.size(); i++) {
+            pQ.add(new Person());
+            System.out.println(pQ);
+        }
+    }
 
- //public class PriorityUsers implements Comparator<User> {
-//    public void main(String[] args) throws IOException {
-//        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-//        Users u = new Users(bf.readLine(), bf.readLine());
-//        Users u1 = new Users(bf.readLine(), bf.readLine());
-//        PriorityQueue<Users> pQ = new PriorityQueue<Users>(5);
-//        pQ.add(u);
-//        pQ.add(u1);
-//        pQ.comparator(u, u1);
-//
-//
-//    }
 
-//    @Override
-//    public int comparator(User u, User u1) {
-//        return u.getStatus() - u1.getStatus();
-//    }
-//
-//}
 
-class User {
+    @Override
+    public int compare(Person p1, Person p2) {
+//        if (o1.getStatus() < (o2.getStatus())) {
+//            return -1;
+//        }
+//        if (o1.getStatus() > o2.getStatus()) {
+//            return 1;
+//        }return 0;
+        Integer status1=p1.getStatus();
+        Integer status2=p2.getStatus();
+        return status1.compareTo(status2);
+    }
+
+    @Override
+    public int compareTo(Person person) {
+        if (person.getStatus() < (person.getStatus())) {
+            return -1;
+        }
+        if (person.getStatus() > person.getStatus()) {
+            return 1;
+        }
+        return 0;
+    }
+}
+
+class Person extends Academia_IT {
+
+    private Date date;
     private String name;
     private int status;
-
+    Scanner sc = new Scanner(System.in);
     public String getName() {
         return name;
     }
@@ -52,20 +71,30 @@ class User {
         this.status = status;
     }
 
-    public User() {
+    public Person() {
+        this.date = new Date();
+        this.name = sc.next();
+        this.status = sc.nextInt();
 
     }
 
-    public User(String name, int status) {
-        this.name = name;
-        this.status = status;
-    }
+
+
+//    public Person(String name, int status) {
+//        this.date = date;
+//        this.name = sc.next();
+//        this.status = sc.nextInt();
+//
+//
+//    }
 
     @Override
     public String toString() {
-        return "Пользователь: логин-" + name + " status- " + '\'' + status + '\'';
+        return "Person{" +
+                "date=" + date +
+                ", name='" + name + '\'' +
+                ", status=" + status +
+                '}';
     }
-
-
 }
 
