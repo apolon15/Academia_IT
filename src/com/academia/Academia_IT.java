@@ -10,21 +10,22 @@ public class Academia_IT {
         collection();
         //collectionUsers();
     }
-/*
-Пользователь вводит с клавиатуры набор чисел. По-
-лученные числа необходимо сохранить в список. После
-чего нужно показать меню, в котором предложить поль-
-зователю набор пунктов:
-1. Добавить элемент в список;
-2. Удалить элемент из списка;
-3. Показать содержимое списка;
-4. Проверить есть ли значение в списке;
-5. Заменить значение в списке.
-В зависимости от выбора пользователя выполняется
-действие, после чего меню отображается снова.
-Для решения задачи используйте подходящий класс
-из Java Collections Framework.
- */
+
+    /*
+    Пользователь вводит с клавиатуры набор чисел. По-
+    лученные числа необходимо сохранить в список. После
+    чего нужно показать меню, в котором предложить поль-
+    зователю набор пунктов:
+    1. Добавить элемент в список;
+    2. Удалить элемент из списка;
+    3. Показать содержимое списка;
+    4. Проверить есть ли значение в списке;
+    5. Заменить значение в списке.
+    В зависимости от выбора пользователя выполняется
+    действие, после чего меню отображается снова.
+    Для решения задачи используйте подходящий класс
+    из Java Collections Framework.
+     */
     public static void collection() throws IOException {
         Scanner sc = new Scanner(System.in);
         boolean stop = false;
@@ -36,8 +37,19 @@ public class Academia_IT {
                 //  int sizeList = sc.nextInt();
                 List<Integer> num = new ArrayList<Integer>(sizeList);
                 System.out.println("Введи " + sizeList + " чисел");
-                for (int i = 0; i < sizeList; i++) {
-                    num.add(Integer.parseInt(bf.readLine()));
+                int i = 0;
+                while (i < sizeList) {
+                    i++;
+                    try {
+                        num.add(Integer.parseInt(bf.readLine()));
+//                        if (!Character.isDigit(Integer.parseInt(bf.readLine())) || Character.isLetter(Integer.parseInt(bf.readLine()))) {
+//                            i--;
+//                            System.out.println("  Введено не число");
+//                        }
+                    } catch (IllegalArgumentException ex) {
+                        System.out.println(" Не корректный ввод. Введено не число. Введи число");
+                        i--;
+                    }
                 }
                 System.out.println(num);
                 System.out.println("Добавить эл-т в список: 1 \nУдалить порядковый номер из списка: 2 " +
@@ -53,7 +65,7 @@ public class Academia_IT {
                         System.out.println(num);
                         break;
                     case 2:
-                        System.out.println("Введи число");
+                        System.out.println("Введи порядковый номер");
                         n = sc.nextInt();
                         try {
                             num.remove(n - 1);
@@ -67,17 +79,20 @@ public class Academia_IT {
                         break;
                     case 4:
                         System.out.println("Введи число");
-                        n = sc.nextInt();
-                        while (it.hasNext()) {
-                            try {
+                        try {
+                            n = sc.nextInt();
+                            while (it.hasNext()) {
                                 if (n == it.next()) {
                                     System.out.println("Есть такое значение");
-                                } else if
-                                (!it.hasNext() && n != it.next()) {
+                                    break;
                                 }
-                            } catch (NoSuchElementException ex) {
-                                System.out.println("Такого значения нет");
                             }
+                            if
+                            (!it.hasNext() && n != it.next()) {
+                                //                           System.out.println("Такого значения нет");
+                            }
+                        } catch (NoSuchElementException ex) {
+                            System.out.println("Такого значения нет либо не корректный ввод");
                         }
                         break;
                     case 5:
@@ -116,24 +131,25 @@ public class Academia_IT {
             }
             System.out.println("Выход из программы-0 / Начать заново нажми любую клавишу");
         }
-        while (!sc.next().equals("0") || !stop);
+        while (!sc.next().equals("0"));
     }
-/*
-Необходимо разработать приложение, которое по-
-зволит сохранять информацию о логинах пользователей
-и их паролях. Каждому пользователю соответствует
-пара логин — пароль. При старте приложение отобра-
-жается меню:
-Практические задания
-1
-1. Добавить нового пользователя;
-2. Удалить существующего пользователя;
-3. Проверить существует ли пользователь;
-4. Изменить логин существующего пользователя;
-5. Изменить пароль существующего пользователя;
-В зависимости от выбора пользователя выполняется
-действие, после чего меню отображается снова.
- */
+
+    /*
+    Необходимо разработать приложение, которое по-
+    зволит сохранять информацию о логинах пользователей
+    и их паролях. Каждому пользователю соответствует
+    пара логин — пароль. При старте приложение отобра-
+    жается меню:
+    Практические задания
+    1
+    1. Добавить нового пользователя;
+    2. Удалить существующего пользователя;
+    3. Проверить существует ли пользователь;
+    4. Изменить логин существующего пользователя;
+    5. Изменить пароль существующего пользователя;
+    В зависимости от выбора пользователя выполняется
+    действие, после чего меню отображается снова.
+     */
     public static void collectionUsers() throws IOException {
         List<Users> uS = new ArrayList<>();
         String login;
@@ -231,7 +247,6 @@ public class Academia_IT {
                     default:
                         System.out.println("Ожидаю ввода:");
                 }
-
             } catch (NumberFormatException ex) {
                 System.out.println("Введи число: ");
             }

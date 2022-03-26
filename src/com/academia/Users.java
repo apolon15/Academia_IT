@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Users   {
+public class Users {
     private String login;
     private String pass;
 
     BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
     public String getLogin() {
         return login;
     }
@@ -37,10 +38,8 @@ public class Users   {
 
     @Override
     public String toString() {
-        return "Пользователь: логин-" + login  + " pass- "+'\'' + pass + '\'';
+        return "Пользователь: логин-" + login + " pass- " + '\'' + pass + '\'';
     }
-
-
 }
 
 

@@ -54,7 +54,9 @@ class Person extends Academia_IT {
     private Date date;
     private String name;
     private int status;
+
     Scanner sc = new Scanner(System.in);
+
     public String getName() {
         return name;
     }
