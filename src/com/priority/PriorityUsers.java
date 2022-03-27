@@ -1,7 +1,4 @@
 package com.priority;
-
-import com.academia.Academia_IT;
-
 import java.io.IOException;
 import java.util.Comparator;
 import java.util.Date;
@@ -49,7 +46,7 @@ public class PriorityUsers implements Comparator<Person>, PriorityUsers1 {
     }
 }
 
-class Person extends Academia_IT {
+class Person extends PriorityUsers {
 
     private Date date;
     private String name;

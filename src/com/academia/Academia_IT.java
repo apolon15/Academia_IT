@@ -42,10 +42,6 @@ public class Academia_IT {
                     i++;
                     try {
                         num.add(Integer.parseInt(bf.readLine()));
-//                        if (!Character.isDigit(Integer.parseInt(bf.readLine())) || Character.isLetter(Integer.parseInt(bf.readLine()))) {
-//                            i--;
-//                            System.out.println("  Введено не число");
-//                        }
                     } catch (IllegalArgumentException ex) {
                         System.out.println(" Не корректный ввод. Введено не число. Введи число");
                         i--;
@@ -89,7 +85,6 @@ public class Academia_IT {
                             }
                             if
                             (!it.hasNext() && n != it.next()) {
-                                //                           System.out.println("Такого значения нет");
                             }
                         } catch (NoSuchElementException ex) {
                             System.out.println("Такого значения нет либо не корректный ввод");
@@ -128,6 +123,8 @@ public class Academia_IT {
                 System.out.println("Значение должно быть более 0 либо введен \"пробел\"");
             } catch (InputMismatchException ex) {
                 System.out.println("Введено не число");
+            } catch (IndexOutOfBoundsException ex) {
+                System.out.println("Нет такого порядкового номера ");
             }
             System.out.println("Выход из программы-0 / Начать заново нажми любую клавишу");
         }
