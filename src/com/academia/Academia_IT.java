@@ -7,9 +7,14 @@ import java.util.*;
 
 public class Academia_IT {
     public static void main(String[] args) throws IOException {
-        collection();
-        //collectionUsers();
+        //collection();
+        collectionUsers();
     }
+
+    //КАЖДЫЙ КЛАСС ОТВЕЧАЕТ ЗА ПУНКТ ДОМАШНЕГО ЗАДАНИЯ.ВРОДЕ ДОЛЖНО БЫТЬ ВСЁ ПОНЯТНО.
+    //В СЛЕДУЮЩИЙ РАЗ БУДУ РАЗБИВАТЬ НА ПРОЕКТЫ И ОТДЕЛЬНЫЕ РЕПОЗ.
+
+
 
     /*
     Пользователь вводит с клавиатуры набор чисел. По-
@@ -148,11 +153,11 @@ public class Academia_IT {
     действие, после чего меню отображается снова.
      */
     public static void collectionUsers() throws IOException {
-        List<Users> uS = new ArrayList<>();
+        boolean yes = false;
+        HashSet<Users> uS = new HashSet<>();
         String login;
         String pass;
         boolean stop = false;
-        Iterator<Users> it = uS.iterator();
         do {
             System.out.println("Добавить пользователя: 1 \nУдалить пользователя: 2 " +
                     "\nПроверить пользователяв списке: 3\nИзменить логин пользователя: 4 \nИзменить пароль пользователя: 5");
@@ -164,27 +169,22 @@ public class Academia_IT {
                         login = bf.readLine();
                         System.out.println("Введи pass:");
                         pass = bf.readLine();
-                        uS.add(new Users(login, pass));
-                        System.out.println(uS);
+                        if (uS.add(new Users(login, pass))) {
+                            System.out.println("Пользователь добавлен \n" + uS);
+                        }
                         break;
                     case 2:
                         if (uS.isEmpty()) {
                             System.out.println("Cписок пуст");
                         } else {
                             System.out.println("Введи логин:");
-                            login = bf.readLine();
-                            while (it.hasNext()) {
-                                for (int i = 0; i <= uS.size() - 1; i++) {
-                                    if (uS.get(i).getLogin().equals(login)) {
-                                        uS.remove(i);
-                                        System.out.println("Пользователь под login " + login + " удален");
-                                        System.out.println(uS);
-                                    } else if (!it.hasNext()) {
-                                        System.out.println(" Нет такого юзера ");
-                                        System.out.println(uS);
-                                    }
-                                }
+                            String delLogin = bf.readLine();
+                            if (uS.removeIf(users -> delLogin.equals(users.getLogin()))) {
+                                System.out.println("Пользователь под login " + delLogin + " удален");
+                            } else {
+                                System.out.println(" Нет такого юзера ");
                             }
+                            System.out.println(uS);
                         }
                         break;
                     case 3:
@@ -193,16 +193,17 @@ public class Academia_IT {
                         } else {
                             System.out.println("Введи логин:");
                             login = bf.readLine();
-                            while (it.hasNext()) {
-                                for (int i = 0; i <= uS.size() - 1; i++) {
-                                    if (uS.get(i).getLogin().equals(login)) {
-                                        System.out.println("Такой существует");
-                                        System.out.println(uS);
-                                    } else if (!it.hasNext()) {
-                                        System.out.println(" Нет такого юзера ");
-                                        System.out.println(uS);
-                                    }
+                            for (Users users : uS) {
+                                if (users.getLogin().equals(login)) {
+                                    System.out.println("Пользователь под login " + login + " существует");
+                                    System.out.println(uS);
+                                    yes = true;
+                                    break;
+                                } else {
                                 }
+                            }
+                            if (!yes) {
+                                System.out.println("Пользователя не существует");
                             }
                         }
                         break;
@@ -214,15 +215,19 @@ public class Academia_IT {
                             login = bf.readLine();
                             System.out.println("Введи новый логин :");
                             String newLogin = bf.readLine();
-                            for (int i = 0; i <= uS.size() - 1; i++) {
-                                if (uS.get(i).getLogin().equals(login)) {
-                                    uS.get(i).setLogin(newLogin);
-                                    System.out.println(uS);
-                                } else if (i == uS.size() - 1) {
-                                    System.out.println("Нет юзера с таким логином\n" + uS);
+                            for (Users users : uS) {
+                                if (users.getLogin().equals(login)) {
+                                    String copyPass = users.getPass();
+                                    uS.remove(users);
+                                    uS.add(new Users(newLogin, copyPass));
+                                    yes = true;
+                                    break;
                                 }
+                            } if (!yes) {
+                                System.out.println("LOGINA не существует");
                             }
                         }
+                        System.out.println(uS);
                         break;
                     case 5:
                         if (uS.isEmpty()) {
@@ -232,14 +237,20 @@ public class Academia_IT {
                             pass = bf.readLine();
                             System.out.println("Введи новый pass :");
                             String newPass = bf.readLine();
-                            for (int i = 0; i <= uS.size() - 1; i++) {
-                                if (uS.get(i).getPass().equals(pass)) {
-                                    uS.get(i).setPass(newPass);
-                                } else if (i == uS.size() - 1) {
-                                    System.out.println("Нет юзера с таким pass");
+                            for (Users users : uS) {
+                                if (users.getPass().equals(pass)) {
+                                    String copyLogin = users.getLogin();
+                                    uS.remove(users);
+                                    uS.add(new Users(copyLogin, newPass));
+                                    yes = true;
+                                    break;
                                 }
                             }
+                            if (!yes) {
+                                System.out.println("Pass не существует");
+                            }
                         }
+                        System.out.println(uS);
                         break;
                     default:
                         System.out.println("Ожидаю ввода:");

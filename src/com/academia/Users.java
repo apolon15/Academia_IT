@@ -3,6 +3,7 @@ package com.academia;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class Users {
     private String login;
@@ -39,6 +40,19 @@ public class Users {
     @Override
     public String toString() {
         return "Пользователь: логин-" + login + " pass- " + '\'' + pass + '\'';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(login, users.login) && Objects.equals(pass, users.pass);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login, pass);
     }
 }
 
