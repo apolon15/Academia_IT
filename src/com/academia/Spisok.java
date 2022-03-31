@@ -1,17 +1,20 @@
 package com.academia;
+
 import java.util.*;
+
 public class Spisok {
     public static void main(String[] args) {
         // System.out.println(task1());
-        //System.out.println(task2());
+       // System.out.println(task2());
         //  System.out.println(task3());
         //System.out.println(task4());
         // System.out.println(task5());
         //  System.out.println(task6());
-        System.out.println(task7());
+        //  System.out.println(task7());
         // task8();
-        // task9();
+         task9();
     }
+
     /*
     Задача 1
     Дан список некоторых целых чисел, найдите значение 20 в нем и, если оно присутствует, замените его на 200. Обновите список только при первом вхождении числа 20.
@@ -44,14 +47,14 @@ public class Spisok {
                 l.add((char) (Math.random() * 100) + "");
                 i++;
             } else {
-                l.add("");
+                l.add(null);
                 i++;
             }
         }
         System.out.println(l);
-        while (l.contains("")) {
-            l.remove("");
-        }
+        //  while (l.contains(null)) {
+        l.removeIf(x -> x == null);
+        //     }
         return l;
     }
 
@@ -189,35 +192,21 @@ public class Spisok {
      */
     public static void task9() {
         List<Integer> l = new ArrayList<>(10);
-        int max = 0;
-        int min = 20;
         int i = 0;
-        int indmax = 0;
-        int indmin = -1;
-        while (i < 10) {
+        while (l.size() < 10) {
             l.add((int) (Math.random() * 21));
-            i++;
         }
         System.out.println(l);
-        for (i = 0; i < l.size(); i++) {
-            if (max < l.get(i)) {
-                indmax = i;
-                max = l.get(i);
-            }
-            if (min > l.get(i)) {
-                min = l.get(i);
-                indmin = i;
-            }
-            if (i == l.size() - 1) {
-                l.set(indmax, min);
-                l.set(indmin, max);
-            }
-        }
+        Collections.sort(l);
         System.out.println(l);
+        int min = l.get(0);
+        int max = l.get(l.size() - 1);
         System.out.println("max = " + max + " min = " + min);
-        List<Integer> copyL = l;
+        l.set(0,max);
+        l.set(l.size()-1,min);
+        System.out.println(l);
         System.out.print("Повторяемые числа ");
-        Iterator<Integer> it = copyL.iterator();
+        Iterator<Integer> it = l.iterator();
         min = 0;
         while (it.hasNext()) {
             max = it.next();
